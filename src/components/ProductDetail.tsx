@@ -64,7 +64,7 @@ export default function ProductDetail({ product }: { product: Product }) {
               <h1 className="mt-2 text-2xl font-bold text-gray-900">
                 {product.title}
               </h1>
-              <p className="mt-4 text-gray-500">{product.description}</p>
+              <p className="mt-4 text-gray-500">{product?.description}</p>
               <div className="mt-6">
                 <div className="text-3xl font-bold text-gray-900">
                   ${product.price}
@@ -75,7 +75,7 @@ export default function ProductDetail({ product }: { product: Product }) {
                       <svg
                         key={i}
                         className={`h-5 w-5 ${
-                          i < Math.floor(product.rating.rate)
+                          i < Math.floor(+(product?.rating?.rate || 5))
                             ? "text-yellow-400"
                             : "text-gray-300"
                         }`}
@@ -86,7 +86,7 @@ export default function ProductDetail({ product }: { product: Product }) {
                       </svg>
                     ))}
                     <span className="ml-2 text-gray-600">
-                      ({product.rating.count} reviews)
+                      ({product.rating?.count} reviews)
                     </span>
                   </div>
                 </div>

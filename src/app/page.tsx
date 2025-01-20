@@ -31,11 +31,11 @@ export default function Home() {
   useEffect(() => {
     const fetchProducts = async () => {
       const response = await fetch("https://fakestoreapi.com/products");
-      const data = await response.json();
-      setProducts(data);
-      setCategories([
-        ...new Set(data.map((product: Product) => product.category)),
-      ]);
+      const data: Product[] = await response.json();
+      if (data) {
+        setProducts(data);
+        setCategories([...new Set(data.map((product) => product.category))]);
+      }
       setLoading(false);
     };
     fetchProducts();
